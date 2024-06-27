@@ -297,19 +297,7 @@ function! FSwitch(filename, precmd)
             let newpath = FSReturnCompanionFilenameString(a:filename)
         endif
     endif
-    if &switchbuf =~ "^use"
-        let i = 1
-        let bufnum = winbufnr(i)
-        while bufnum != -1
-            let filename = fnamemodify(bufname(bufnum), ':p')
-            if filename == newpath
-                execute ":sbuffer " .  filename
-                return
-            endif
-            let i += 1
-            let bufnum = winbufnr(i)
-        endwhile
-    endif
+
     if openfile == 1
         if newpath != ''
             if strlen(a:precmd) != 0
